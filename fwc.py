@@ -8,6 +8,7 @@ while True:
     print('Press enter to exit')
     command = input('Command: ').split(' ')
     if command == ['']:
+        system('clear')
         exit()
     elif command[0] == 'set':
         system('sudo iptables -D INPUT -j DROP')
