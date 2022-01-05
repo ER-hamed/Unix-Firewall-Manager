@@ -107,9 +107,8 @@ class IptablesManager:
 
 
 if len(argv) == 3:
-    print(argv)
     iptables_manager = IptablesManager()
-    iptables_manager.command(argv[1] + argv[2])
+    iptables_manager.command(argv[1] + ' ' + argv[2])
     iptables_manager.show()
 else:
     iptables_manager = IptablesManager()
