@@ -34,32 +34,25 @@ Command: set
 
 ##### Open 22, 80, 443 And Close All Traffic.
 #
- 
+
 ### Accepting All Other Traffic:
 ```
 Command: set
 ```
 
 ##### Open 22, 80, 443 And Open All Other Traffic.
-
-
-
-
-
-
 #
  
 ### Use args:
-### Example
 ```
-$ UFM open 21
-```
-```
-$ UFM close 21
+# UFM open 21
 ```
 ```
-$ UFM remove 21
+# UFM close 21
 ```
 ```
-$ UFM flush
+# UFM remove 21
+```
+```
+# UFM flush
 ```
