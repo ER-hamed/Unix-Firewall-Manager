@@ -20,7 +20,7 @@ Command: remove <port-number>
 
 
 
-## Features
+## Features:
 ```Command: set``` Set Open 22, 80, 443 And Close All Not Included And Close Ping.
 
 ```Command: unset``` Set Open 22, 80, 443 And Open All Not Included And Open Ping.
