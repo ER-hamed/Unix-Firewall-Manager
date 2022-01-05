@@ -3,19 +3,19 @@
 ## Opening Port:
 
 ```
-Command: open <port>
+Command: open <port-number>
 ```
 
 
 ## Closing Port:
 ```
-Command: close <port>
+Command: close <port-number>
 ```
 
 
 ## Remove Rule:
 ```
-Command: remove <port>
+Command: remove <port-number>
 ```
 
 
