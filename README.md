@@ -19,8 +19,49 @@ Command: remove <port-number>
 ```
 
 
+## Remove All Rules:
+```
+Command: flush
+```
+
+
 
 ## Features:
-```Command: set``` Set Open 22, 80, 443 And Close All Not Included And Close Ping.
+### Dropping All Other Traffic:
+```
+Command: set
+```
 
-```Command: unset``` Set Open 22, 80, 443 And Open All Not Included And Open Ping.
+##### Open 22, 80, 443 And Close All Traffic.
+#
+ 
+### Accepting All Other Traffic:
+```
+Command: set
+```
+
+##### Open 22, 80, 443 And Open All Other Traffic.
+
+
+
+
+
+
+#
+ 
+### Use args:
+### Example
+```
+$ UFM open 21
+```
+```
+$ UFM close 21
+```
+```
+$ UFM remove 21
+```
+```
+$ UFM flush
+```
+
+##### Open 22, 80, 443 And Open All Other Traffic.
