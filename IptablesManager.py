@@ -14,6 +14,7 @@ class IptablesManager:
             self.command(input('Command: '))
 
     def command(self, command):
+        print(command)
         command = command.split(' ')
         if command[0] == '' or command[0] == 'exit':
             self.clear()
@@ -40,32 +41,38 @@ class IptablesManager:
     def open(self, port: int):
         # filtering input
         port = str(int(port))
-        # remove DROP all
-        system('sudo iptables -D INPUT -j DROP')
-        # remove port if already closed
-        system('sudo iptables -D INPUT -p tcp --dport ' + port + ' -j DROP')
-        # remove port if already opened
-        system('sudo iptables -D INPUT -p tcp --dport ' + port + ' -j ACCEPT')
-        # open port
-        system('sudo iptables -A INPUT -p tcp --dport ' + port + ' -j ACCEPT')
-        if self.close_other:
-            # add DROP all
-            system('sudo iptables -A INPUT -j DROP')
+        if port in self.not_close:
+            print('Warning: ' + port + ' in not_close list')
+        else:
+            # remove DROP all
+            system('sudo iptables -D INPUT -j DROP')
+            # remove port if already closed
+            system('sudo iptables -D INPUT -p tcp --dport ' + port + ' -j DROP')
+            # remove port if already opened
+            system('sudo iptables -D INPUT -p tcp --dport ' + port + ' -j ACCEPT')
+            # open port
+            system('sudo iptables -A INPUT -p tcp --dport ' + port + ' -j ACCEPT')
+            if self.close_other:
+                # add DROP all
+                system('sudo iptables -A INPUT -j DROP')
 
     def close(self, port: int):
         # filtering input
         port = str(int(port))
-        # remove DROP all
-        system('sudo iptables -D INPUT -j DROP')
-        # remove port if already closed
-        system('sudo iptables -D INPUT -p tcp --dport ' + port + ' -j DROP')
-        # remove port if already opened
-        system('sudo iptables -D INPUT -p tcp --dport ' + port + ' -j ACCEPT')
-        # close port
-        system('sudo iptables -A INPUT -p tcp --dport ' + port + ' -j DROP')
-        if self.close_other:
-            # add DROP all
-            system('sudo iptables -A INPUT -j DROP')
+        if port in self.not_close:
+            print('Warning: ' + port + ' in not_close list')
+        else:
+            # remove DROP all
+            system('sudo iptables -D INPUT -j DROP')
+            # remove port if already closed
+            system('sudo iptables -D INPUT -p tcp --dport ' + port + ' -j DROP')
+            # remove port if already opened
+            system('sudo iptables -D INPUT -p tcp --dport ' + port + ' -j ACCEPT')
+            # close port
+            system('sudo iptables -A INPUT -p tcp --dport ' + port + ' -j DROP')
+            if self.close_other:
+                # add DROP all
+                system('sudo iptables -A INPUT -j DROP')
 
     def remove(self, port: int):
         # filtering input
