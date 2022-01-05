@@ -6,7 +6,7 @@ from sys import argv
 
 class IptablesManager:
     def __init__(self):
-        self.not_close = [22, 80, 443]
+        self.never_close = [22, 80, 443]
         self.close_other = False
 
     def handle(self):
@@ -30,6 +30,9 @@ class IptablesManager:
         elif command[0] == 'remove':
             self.remove(int(command[1]))
 
+        elif command[0] == 'flush':
+            self.flush()
+
         elif command[0] == 'set':
             self.set()
 
@@ -42,7 +45,7 @@ class IptablesManager:
     def open(self, port: int):
         # filtering input
         port = str(int(port))
-        if port in self.not_close:
+        if port in self.never_close:
             print('Warning: ' + port + ' in not_close list')
         else:
             # remove DROP all
@@ -60,7 +63,7 @@ class IptablesManager:
     def close(self, port: int):
         # filtering input
         port = str(int(port))
-        if port in self.not_close:
+        if port in self.never_close:
             print('Warning: ' + port + ' in not_close list')
         else:
             # remove DROP all
@@ -78,13 +81,17 @@ class IptablesManager:
     def remove(self, port: int):
         # filtering input
         port = str(int(port))
-        if port in self.not_close:
+        if port in self.never_close:
             print('Warning: ' + port + ' in not_close list')
         else:
             # remove port if in ACCEPT
             system('sudo iptables -D INPUT -p tcp --dport ' + port + ' -j ACCEPT')
             # remove port if in DROP
             system('sudo iptables -D INPUT -p tcp --dport ' + port + ' -j DROP')
+
+    @staticmethod
+    def flush():
+        system('sudo iptables -F')
 
     @staticmethod
     def clear():
@@ -96,12 +103,12 @@ class IptablesManager:
 
     def set(self):
         self.close_other = True
-        for port in self.not_close:
+        for port in self.never_close:
             self.open(port)
 
     def unset(self):
         self.close_other = False
-        for port in self.not_close:
+        for port in self.never_close:
             self.open(port)
 
 
