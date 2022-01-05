@@ -16,7 +16,6 @@ class IptablesManager:
             self.command(input('Command: '))
 
     def command(self, command):
-        print(command)
         command = command.split(' ')
         if command[0] == '' or command[0] == 'exit':
             self.clear()
