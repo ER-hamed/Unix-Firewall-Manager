@@ -8,7 +8,7 @@ Command: open <port>
 
 ## Closing Port:
 ```
-Command: Close <port>
+Command: close <port>
 ```
 
 
