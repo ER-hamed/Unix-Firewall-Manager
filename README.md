@@ -1,4 +1,4 @@
-# Iptables Manager
+# Unix Firewall Manager
 ![](https://github.com/ER-hamed/iptable-manager/raw/main/Screenshot.png)
 ## Opening Port:
 
@@ -63,5 +63,3 @@ $ UFM remove 21
 ```
 $ UFM flush
 ```
-
-##### Open 22, 80, 443 And Open All Other Traffic.
