@@ -45,14 +45,14 @@ Command: set
  
 ### Use args:
 ```
-# UFM open 21
+# ./UFM.py open 21
 ```
 ```
-# UFM close 21
+# ./UFM.py close 21
 ```
 ```
-# UFM remove 21
+# ./UFM.py remove 21
 ```
 ```
-# UFM flush
+# ./UFM.py flush
 ```
