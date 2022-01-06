@@ -109,6 +109,10 @@ if len(argv) == 3:
     iptables_manager = IptablesManager()
     iptables_manager.command(argv[1] + ' ' + argv[2])
     iptables_manager.show()
+elif len(argv) == 2:
+    iptables_manager = IptablesManager()
+    iptables_manager.command(argv[1])
+    iptables_manager.show()
 else:
     iptables_manager = IptablesManager()
     iptables_manager.handle()
