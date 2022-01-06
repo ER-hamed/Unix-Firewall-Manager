@@ -95,6 +95,7 @@ class IptablesManager:
         for port in self.never_close:
             self.open(port)
         self.close_other = True
+        system('sudo iptables -D INPUT -j DROP')
         system('sudo iptables -A INPUT -j DROP')
 
     def unset(self):
