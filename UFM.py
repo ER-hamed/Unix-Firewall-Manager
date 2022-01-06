@@ -92,14 +92,14 @@ class IptablesManager:
         system('sudo iptables -L --line-numbers')
 
     def set(self):
-        self.close_other = True
         for port in self.never_close:
             self.open(port)
+        self.close_other = True
 
     def unset(self):
-        self.close_other = False
         for port in self.never_close:
             self.open(port)
+        self.close_other = False
 
 
 if len(argv) == 3:
