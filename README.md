@@ -32,7 +32,7 @@ Command: flush
 Command: set
 ```
 
-##### Open 22, 80, 443 And Close All Traffic.
+##### Open 22, 80, 443 And Close All Other Traffic.
 #
 
 ### Accepting All Other Traffic:
