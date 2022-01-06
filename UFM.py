@@ -72,15 +72,12 @@ class IptablesManager:
                 system('sudo iptables -A INPUT -j DROP')
 
     def remove(self, port: int):
-        if port in self.never_close:
-            print('Warning: ' + str(port) + ' in not_close list')
-        else:
-            # filtering input
-            port = str(port)
-            # remove port if in ACCEPT
-            system('sudo iptables -D INPUT -p tcp --dport ' + port + ' -j ACCEPT')
-            # remove port if in DROP
-            system('sudo iptables -D INPUT -p tcp --dport ' + port + ' -j DROP')
+        # filtering input
+        port = str(port)
+        # remove port if in ACCEPT
+        system('sudo iptables -D INPUT -p tcp --dport ' + port + ' -j ACCEPT')
+        # remove port if in DROP
+        system('sudo iptables -D INPUT -p tcp --dport ' + port + ' -j DROP')
 
     @staticmethod
     def flush():
