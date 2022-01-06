@@ -1,8 +1,8 @@
 #! /usr/bin/python3
 
-from os import system
+# from os import system
 from sys import argv
-
+system = print
 
 class IptablesManager:
     def __init__(self):
@@ -50,10 +50,8 @@ class IptablesManager:
             port = str(port)
             # remove DROP all
             system('sudo iptables -D INPUT -j DROP')
-            # remove port if already closed
-            system('sudo iptables -D INPUT -p tcp --dport ' + port + ' -j DROP')
-            # remove port if already opened
-            system('sudo iptables -D INPUT -p tcp --dport ' + port + ' -j ACCEPT')
+            # remove port if already exist in rules
+            self.remove(int(port))
             # open port
             system('sudo iptables -A INPUT -p tcp --dport ' + port + ' -j ACCEPT')
             if self.close_other:
@@ -68,10 +66,8 @@ class IptablesManager:
             port = str(port)
             # remove DROP all
             system('sudo iptables -D INPUT -j DROP')
-            # remove port if already closed
-            system('sudo iptables -D INPUT -p tcp --dport ' + port + ' -j DROP')
-            # remove port if already opened
-            system('sudo iptables -D INPUT -p tcp --dport ' + port + ' -j ACCEPT')
+            # remove port if already exist in rules
+            self.remove(int(port))
             # close port
             system('sudo iptables -A INPUT -p tcp --dport ' + port + ' -j DROP')
             if self.close_other:
@@ -102,14 +98,14 @@ class IptablesManager:
         system('sudo iptables -L --line-numbers')
 
     def set(self):
-        self.close_other = True
         for port in self.never_close:
             self.open(port)
+        self.close_other = True
 
     def unset(self):
-        self.close_other = False
         for port in self.never_close:
             self.open(port)
+        self.close_other = False
 
 
 if len(argv) == 3:
