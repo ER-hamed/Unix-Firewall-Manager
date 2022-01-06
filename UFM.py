@@ -71,7 +71,8 @@ class IptablesManager:
                 # add DROP all
                 system('sudo iptables -A INPUT -j DROP')
 
-    def remove(self, port: int):
+    @staticmethod
+    def remove(port: int):
         # filtering input
         port = str(port)
         # remove port if in ACCEPT
@@ -108,10 +109,12 @@ class IptablesManager:
 if len(argv) == 3:
     iptables_manager = IptablesManager()
     iptables_manager.command(argv[1] + ' ' + argv[2])
+    iptables_manager.clear()
     iptables_manager.show()
 elif len(argv) == 2:
     iptables_manager = IptablesManager()
     iptables_manager.command(argv[1])
+    iptables_manager.clear()
     iptables_manager.show()
 else:
     iptables_manager = IptablesManager()
