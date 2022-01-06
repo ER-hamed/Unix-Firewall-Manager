@@ -43,20 +43,17 @@ class IptablesManager:
             pass
 
     def open(self, port: int):
-        if port in self.never_close:
-            print('Warning: ' + str(port) + ' in not_close list')
-        else:
-            # filtering input
-            port = str(port)
-            # remove DROP all
-            system('sudo iptables -D INPUT -j DROP')
-            # remove port if already exist in rules
-            self.remove(int(port))
-            # open port
-            system('sudo iptables -A INPUT -p tcp --dport ' + port + ' -j ACCEPT')
-            if self.close_other:
-                # add DROP all
-                system('sudo iptables -A INPUT -j DROP')
+        # filtering input
+        port = str(port)
+        # remove DROP all
+        system('sudo iptables -D INPUT -j DROP')
+        # remove port if already exist in rules
+        self.remove(int(port))
+        # open port
+        system('sudo iptables -A INPUT -p tcp --dport ' + port + ' -j ACCEPT')
+        if self.close_other:
+            # add DROP all
+            system('sudo iptables -A INPUT -j DROP')
 
     def close(self, port: int):
         if port in self.never_close:
