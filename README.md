@@ -37,7 +37,7 @@ Command: set
 
 ### Accepting All Other Traffic:
 ```
-Command: set
+Command: unset
 ```
 
 ##### Open 22, 80, 443 And Open All Other Traffic.
