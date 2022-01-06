@@ -1,8 +1,8 @@
 #! /usr/bin/python3
 
-# from os import system
+from os import system
 from sys import argv
-system = print
+
 
 class IptablesManager:
     def __init__(self):
